@@ -1,0 +1,48 @@
+[package]
+name = "flowfull"
+version = "0.1.0"
+edition = "2026"
+description = "Async Rust client for Flowfull and Flowless-compatible backends"
+license = "AGPL-3.0-only"
+repository = "https://github.com/pubflow/flowfull-rust"
+homepage = "https://www.pubflow.com"
+documentation = "https://docs.rs/flowfull"
+readme = "README.md"
+keywords = ["flowfull", "flowless", "api", "client", "auth"]
+categories = ["api-bindings", "web-programming::http-client"]
+rust-version = "1.85"
+
+[features]
+default = ["rustls-tls", "json", "multipart", "payments"]
+rustls-tls = ["reqwest/rustls-tls"]
+native-tls = ["reqwest/native-tls"]
+json = ["chrono/serde"]
+multipart = ["reqwest/multipart", "tokio/fs"]
+storage-file = ["tokio/fs"]
+payments = []
+middleware-axum = ["dep:axum", "dep:tower", "dep:http"]
+middleware-actix = ["dep:actix-web"]
+blocking = ["reqwest/blocking"]
+
+[dependencies]
+async-trait = "0.1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+futures-util = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync", "fs"] }
+url = "2"
+
+actix-web = { version = "4", optional = true }
+axum = { version = "0.8", optional = true }
+http = { version = "1", optional = true }
+mime_guess = "2"
+tower = { version = "0.5", optional = true }
+
+[dev-dependencies]
+pretty_assertions = "1"
+tempfile = "3"
+tokio-test = "0.4"
+wiremock = "0.6"

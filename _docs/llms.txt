@@ -1,0 +1,13 @@
+Flowfull Rust is an async Rust client for Flowfull and Flowless-compatible backends.
+
+Important defaults:
+- include_session defaults to false.
+- session header defaults to X-Session-ID.
+- storage keys are pubflow_session_id and pubflow_user_data.
+- query filters use bracket syntax such as age[gte]=18.
+
+Use FlowfullClient::builder for configuration.
+Use client.auth() for Flowless auth.
+Use BridgeValidator for backend session validation.
+Use client.pay() for Bridge Payments endpoints.
+
