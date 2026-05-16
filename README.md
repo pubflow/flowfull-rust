@@ -82,8 +82,3 @@ async fn query_users(client: FlowfullClient) -> flowfull::Result<serde_json::Val
         .await
 }
 ```
-
-## Status
-
-This is the initial Rust implementation. See [`to-do/01-IMPLEMENTATION-PLAN.md`](./to-do/01-IMPLEMENTATION-PLAN.md) for the full implementation plan and review checklist.
-
